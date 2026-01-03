@@ -36,6 +36,9 @@
 
 #include <windowsx.h>
 
+/* Custom message for parent window to set size*/
+#define WM_DYNAMICSETSIZE (WM_USER+0)
+
 static HWND g_focus_hWnd = NULL;
 static HWND g_main_hWnd = NULL;
 static HWND g_parent_hWnd = NULL;
@@ -756,6 +759,15 @@ LRESULT CALLBACK wf_event_proc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam
 				}
 			}
 			break;
+
+			case WM_DYNAMICSETSIZE: // Custom message for parent window to set size
+			{
+				wfc->client_width = HIWORD(lParam);
+				wfc->client_height = LOWORD(lParam);
+				wf_send_resize(wfc);
+
+				break;
+			}
 
 			default:
 				processed = FALSE;

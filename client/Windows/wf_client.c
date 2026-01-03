@@ -67,6 +67,9 @@
 
 #define WM_FREERDP_SHOWWINDOW (WM_USER + 100)
 
+/* Custom message to notify parent of window shown */
+#define WM_NOTIFY_PARENT_FREERDP_SHOWWINDOW (WM_USER + 600)
+
 static BOOL wf_has_console(void)
 {
 #ifdef WITH_WIN_CONSOLE
@@ -1134,6 +1137,8 @@ static DWORD WINAPI wf_client_thread(LPVOID lpParam)
 				case WM_FREERDP_SHOWWINDOW:
 				{
 					ShowWindow(wfc->hwnd, SW_NORMAL);
+					HWND hParent = GetParent(wfc->hwnd);
+					PostMessage(hParent, WM_NOTIFY_PARENT_FREERDP_SHOWWINDOW, 0, 0);
 					break;
 				}
 				default:

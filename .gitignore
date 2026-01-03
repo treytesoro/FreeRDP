@@ -3,3 +3,12 @@
 build
 checker
 abi-checker
+freerdpinstall
+freerdp-build
+/libs
+/winscripts/cJSON*/
+/winscripts/libusb*/
+/winscripts/uriparser*/
+/winscripts/SDL*/
+/winscripts/zlib*/
+/winscripts/openssl*/

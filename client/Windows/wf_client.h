@@ -53,6 +53,8 @@ extern "C"
 {
 #endif
 
+
+
 // System menu constants
 #define SYSCOMMAND_ID_SMARTSIZING 1000
 #define SYSCOMMAND_ID_REQUEST_CONTROL 1001
