@@ -39,8 +39,9 @@ cmake -GNinja ^
     -DBUILD_SHARED_LIBS=ON ^
     -DWITH_SHADOW_SUBSYSTEM=OFF ^
     -DWITH_CLIENT_INTERFACE=ON ^
-    -DWITH_CLIENT_SDL=OFF ^
+    -DWITH_CLIENT_SDL=ON ^
     -DCHANNEL_URBDRC=OFF ^
+    -DCMAKE_CXX_FLAGS="-I%libspath%\SDL2TTF-install\include\SDL2" ^
     -DCMAKE_PREFIX_PATH=%libspath%\cJSON-install;%libspath%\SDL2TTF-install;%libspath%\SDL2-install;%libspath%\SDL2IMAGE-install;%libspath%\uriparser-install;%libspath%\zlib-install;%libspath%\OPENSSL-install;%libspath%\libusb-install
 
 cmake --build %freerdppath%\freerdp-build

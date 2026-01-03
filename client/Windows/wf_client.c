@@ -1035,6 +1035,24 @@ static BOOL wf_present_gateway_message(freerdp* instance, UINT32 type, BOOL isDi
 	return TRUE;
 }
 
+static DWORD WINAPI wf_notify_parent_thread(LPVOID lpParam)
+{
+	// Wait 3 seconds to ensure the window is shown
+	// and desktop ready before notifying parent.
+	// This isn't 100% reliable. Sometimes parent still
+	// receives the message before the deskop is ready.
+	
+	Sleep(3000); 
+	wfContext* wfc = (wfContext*)lpParam;
+	WINPR_ASSERT(wfc);
+
+	HWND hParent = GetParent(wfc->hwnd);
+	PostMessage(hParent, WM_NOTIFY_PARENT_FREERDP_SHOWWINDOW, 0, 0);
+	WLog_DBG(TAG, "Notify parent thread exited.");
+	ExitThread(0);
+	return 0;
+}
+
 static DWORD WINAPI wf_client_thread(LPVOID lpParam)
 {
 	MSG msg = { 0 };
@@ -1137,8 +1155,7 @@ static DWORD WINAPI wf_client_thread(LPVOID lpParam)
 				case WM_FREERDP_SHOWWINDOW:
 				{
 					ShowWindow(wfc->hwnd, SW_NORMAL);
-					HWND hParent = GetParent(wfc->hwnd);
-					PostMessage(hParent, WM_NOTIFY_PARENT_FREERDP_SHOWWINDOW, 0, 0);
+					CreateThread(NULL, 0, wf_notify_parent_thread, (LPVOID)wfc, 0, NULL);
 					break;
 				}
 				default:

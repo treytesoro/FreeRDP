@@ -13,7 +13,7 @@ echo Setting up dependencies in %winscripts%
 CD ..
 SET freerdproot=%CD%
 @REM Create libs folder if it doesn't exist
-set libs=libs
+@REM set libs=libs
 @REM if EXIST "%libs%\" ( 
 @REM     echo ERROR: Libs folder exists, please remove first.
 @REM     cd %winscripts%
