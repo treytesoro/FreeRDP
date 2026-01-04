@@ -38,6 +38,10 @@
 
 /* Custom message for parent window to set size*/
 #define WM_DYNAMICSETSIZE (WM_USER+0)
+#define WM_PSEUDOFOCUS (WM_USER+1)
+
+/* For my own sanity checks */
+#define TAG CLIENT_TAG("Trey")
 
 static HWND g_focus_hWnd = NULL;
 static HWND g_main_hWnd = NULL;
@@ -81,6 +85,10 @@ LRESULT CALLBACK wf_ll_kbd_proc(int nCode, WPARAM wParam, LPARAM lParam)
 
 	DEBUG_KBD("Low-level keyboard hook, hWnd %X nCode %X wParam %X", g_focus_hWnd, nCode, wParam);
 
+	printf_s("Low-level keyboard hook, hWnd %p nCode %d wParam %lu\n", g_focus_hWnd, nCode, (unsigned long)wParam);
+	fflush(stdout);
+
+
 	if (g_flipping_in)
 	{
 		if (!alt_ctrl_down())
@@ -91,12 +99,23 @@ LRESULT CALLBACK wf_ll_kbd_proc(int nCode, WPARAM wParam, LPARAM lParam)
 
 	if (g_parent_hWnd && g_main_hWnd)
 	{
+		char buffer[256] = { 0 };
+		sprintf_s(buffer, sizeof(buffer),
+		          "Parent HWND: 0x%p, Main HWND: 0x%p, Focus HWND: 0x%p", g_parent_hWnd,
+		          g_main_hWnd, g_focus_hWnd);
+		WLog_INFO(TAG, buffer);
 		wfc = (wfContext*)GetWindowLongPtr(g_main_hWnd, GWLP_USERDATA);
 		GUITHREADINFO gui_thread_info;
 		gui_thread_info.cbSize = sizeof(GUITHREADINFO);
 		HWND fg_win_hwnd = GetForegroundWindow();
 		DWORD fg_win_thread_id = GetWindowThreadProcessId(fg_win_hwnd, &ext_proc_id);
 		BOOL result = GetGUIThreadInfo(fg_win_thread_id, &gui_thread_info);
+		memset(buffer, 0, sizeof(buffer));
+		sprintf_s(buffer, sizeof(buffer),
+		          "Foreground HWND: 0x%p, Active HWND: 0x%p, gui_thread_info.hwndFocus: 0x%p, Capture HWND: 0x%p, wfc->hWndParent: 0x%p",
+		          fg_win_hwnd, gui_thread_info.hwndActive, gui_thread_info.hwndFocus,
+		          gui_thread_info.hwndCapture, wfc->hWndParent);
+		WLog_INFO(TAG, buffer);
 		if (gui_thread_info.hwndFocus != wfc->hWndParent)
 		{
 			g_focus_hWnd = NULL;
@@ -108,6 +127,7 @@ LRESULT CALLBACK wf_ll_kbd_proc(int nCode, WPARAM wParam, LPARAM lParam)
 
 	if (g_focus_hWnd && (nCode == HC_ACTION))
 	{
+		WLog_INFO(TAG, "Entered keyboard processing");
 		switch (wParam)
 		{
 			case WM_KEYDOWN:
@@ -765,7 +785,16 @@ LRESULT CALLBACK wf_event_proc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam
 				wfc->client_width = HIWORD(lParam);
 				wfc->client_height = LOWORD(lParam);
 				wf_send_resize(wfc);
+				processed = FALSE;
+				break;
+			}
 
+			case WM_PSEUDOFOCUS: // Custom message for parent window to set focus
+			{
+				(void)freerdp_settings_set_bool(wfc->common.context.settings, FreeRDP_SuspendInput,
+			                                FALSE);
+				freerdp_set_focus(wfc->common.context.instance);
+				processed = FALSE;
 				break;
 			}
 

@@ -1042,11 +1042,11 @@ static DWORD WINAPI wf_notify_parent_thread(LPVOID lpParam)
 	// This isn't 100% reliable. Sometimes parent still
 	// receives the message before the deskop is ready.
 	
-	Sleep(3000); 
+	Sleep(1000); 
 	wfContext* wfc = (wfContext*)lpParam;
 	WINPR_ASSERT(wfc);
 
-	HWND hParent = GetParent(wfc->hwnd);
+	HWND hParent = wfc->hWndParent ;//GetParent(wfc->hwnd);
 	PostMessage(hParent, WM_NOTIFY_PARENT_FREERDP_SHOWWINDOW, 0, 0);
 	WLog_DBG(TAG, "Notify parent thread exited.");
 	ExitThread(0);
