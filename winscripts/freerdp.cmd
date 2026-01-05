@@ -26,7 +26,7 @@ cd ..
 cmake -GNinja ^
     -B %freerdppath%\freerdp-build ^
     -S freerdp ^
-    -DCMAKE_BUILD_TYPE=Release ^
+    -DCMAKE_BUILD_TYPE=Debug ^
     -DCMAKE_SKIP_INSTALL_ALL_DEPENDENCY=ON ^
     -DCMAKE_INSTALL_PREFIX=%freerdppath%\freerdpinstall ^
     -DWITH_SERVER=OFF ^

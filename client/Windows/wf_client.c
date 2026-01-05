@@ -70,6 +70,21 @@
 /* Custom message to notify parent of window shown */
 #define WM_NOTIFY_PARENT_FREERDP_SHOWWINDOW (WM_USER + 600)
 
+/* 
+	TODO: I'm actually calling this after the Credential prompt is dismissed
+	so maybe rename it to WM_NOTIFY_PARENT_POSTAUTHENTICATE. The Parent window can use this
+	to show a progress bar or similar.
+*/
+#define WM_NOTIFY_PARENT_PRECONNECT (WM_USER + 601)
+
+/*
+	Custom message to notify parent of post connect.
+	If you need to dismiss a parent window progress bar,
+	it's better to do it with WM_NOTIFY_PARENT_FREERDP_SHOWWINDOW
+	as post connect gets called too early.
+*/
+#define WM_NOTIFY_PARENT_POSTCONNECT (WM_USER + 602)
+
 static BOOL wf_has_console(void)
 {
 #ifdef WITH_WIN_CONSOLE
@@ -315,6 +330,8 @@ static BOOL wf_pre_connect(freerdp* instance)
 	PubSub_SubscribeChannelConnected(instance->context->pubSub, wf_OnChannelConnectedEventHandler);
 	PubSub_SubscribeChannelDisconnected(instance->context->pubSub,
 	                                    wf_OnChannelDisconnectedEventHandler);
+
+	
 	return TRUE;
 }
 
@@ -470,7 +487,7 @@ static BOOL wf_post_connect(freerdp* instance)
 	e.handle = (void*)wfc->hwnd;
 	PubSub_OnEmbedWindow(context->pubSub, context, &e);
 #ifdef WITH_PROGRESS_BAR
-	if (wfc->taskBarList)
+	if (wfc->taskBarList && wfc->hWndParent == NULL) // unable to see progress when embedded so skip
 	{
 		ShowWindow(wfc->hwnd, SW_SHOWMINIMIZED);
 		wfc->taskBarList->lpVtbl->SetProgressState(wfc->taskBarList, wfc->hwnd, TBPF_INDETERMINATE);
@@ -484,6 +501,8 @@ static BOOL wf_post_connect(freerdp* instance)
 
 	wfc->floatbar = wf_floatbar_new(wfc, wfc->hInstance,
 	                                freerdp_settings_get_uint32(settings, FreeRDP_Floatbar));
+
+	PostMessage(wfc->hWndParent, WM_NOTIFY_PARENT_POSTCONNECT, 0, 0);
 	return TRUE;
 }
 
@@ -585,6 +604,9 @@ static BOOL wf_authenticate_ex(freerdp* instance, char** username, char** passwo
 			status = CredUIPromptForCredentialsW(&wfUiInfo, titleW, NULL, 0, UserNameW,
 			                                     ARRAYSIZE(UserNameW), PasswordW,
 			                                     ARRAYSIZE(PasswordW), &fSave, dwFlags);
+
+		PostMessage(wfc->hWndParent, WM_NOTIFY_PARENT_PRECONNECT, 0, 0);
+
 		if (status != NO_ERROR)
 		{
 			WLog_ERR(TAG, "CredUIPromptForCredentials unexpected status: 0x%08lX", status);
