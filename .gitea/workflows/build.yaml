@@ -15,7 +15,13 @@ jobs:
       #     ls ${{ gitea.workspace }}
       - name: Test msbuild
         uses: microsoft/setup-msbuild@v2
+        with:
+          msbuild-architecture: x64 
       - run: msbuild /version
+      - name: Prepare environment for NMAKE/MSVC
+        uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: amd64
       - run: pwsh ./setup.ps1
         working-directory: ${{ gitea.workspace }}/winscripts
       - run: echo "This job's status is ${{ job.status }}."
