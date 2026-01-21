@@ -102,7 +102,7 @@ $env:PATH += ";$libspath\cJSON-install;$libspath\SDL2-install;$libspath\SDL2IMAG
 Set-Location $winScriptsPath
 
 $compress = @{
-  Path = "..\freerdpinstall\bin"
+  Path = "..\freerdpinstall\bin", "openssl_build_output.log", "openssl_install_output.log"
   CompressionLevel = "Fastest"
   DestinationPath = "..\freerdpinstall\build-wfreerdp-win32.zip"
 }
