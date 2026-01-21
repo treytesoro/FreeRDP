@@ -1,4 +1,4 @@
-name: FreeRDP WpfRDP Build
+name: FreeRDP Fork Build
 
 on: [workflow_dispatch]
 

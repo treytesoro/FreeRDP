@@ -1,12 +1,12 @@
-$currentlocation = (Get-Location).Path
+$winScriptsPath = (Get-Location).Path
 
-if ($currentlocation -notlike "*winscripts*") {
+if ($winScriptsPath -notlike "*winscripts*") {
     Write-Host "Please run this script from the winscripts folder."
     exit 1
 }
 
-Write-Host "Setting up dependencies in $currentlocation"
-$env:PATH += ";$currentlocation\python;$currentlocation\python\Scripts;${currentlocation}\strawberry-perl\perl\bin;${currentlocation}\strawberry-perl\perl\site\bin;${currentlocation}\strawberry-perl\c\bin"
+Write-Host "Setting up dependencies in $winScriptsPath"
+$env:PATH += ";$winScriptsPath\python;$winScriptsPath\python\Scripts;${winScriptsPath}\strawberry-perl\perl\bin;${winScriptsPath}\strawberry-perl\perl\site\bin;${winScriptsPath}\strawberry-perl\c\bin"
 
 function Remove-TempBuildFiles {
     cmd.exe /c rmdir /s /q openssl 
@@ -70,7 +70,7 @@ function Remove-LibsPath {
     $env:libspath = $libspath
     if (Test-Path $libspath) {
         Write-Host "ERROR: Libs folder exists, please remove first."
-        # cd $currentlocation
+        # cd $winScriptsPath
         # exit 1
         cmd.exe /c rmdir /s /q $libspath
         New-Item -ItemType Directory -Path $libspath | Out-Null
@@ -79,7 +79,7 @@ function Remove-LibsPath {
         New-Item -ItemType Directory -Path $libspath | Out-Null
     }
 
-    Set-Location $currentlocation
+    Set-Location $winScriptsPath
 }
 
 Remove-TempBuildFiles
@@ -99,12 +99,12 @@ $env:PATH += ";$libspath\cJSON-install;$libspath\SDL2-install;$libspath\SDL2IMAG
 & .\libusb.ps1
 & .\freerdp.ps1
 
-Set-Location $currentlocation
+Set-Location $winScriptsPath
 
 $compress = @{
-  Path = "$currentlocation\freerdpinstall\bin"
+  Path = "..\freerdpinstall\bin"
   CompressionLevel = "Fastest"
-  DestinationPath = "$currentlocation\freerdpinstall\build-wfreerdp-win32.zip"
+  DestinationPath = "..\freerdpinstall\build-wfreerdp-win32.zip"
 }
 Compress-Archive @compress
 
@@ -116,4 +116,4 @@ Compress-Archive @compress
 #     cmd.exe /c rmdir /s /q $libspath
 # }
 
-Set-Location $currentlocation
+Set-Location $winScriptsPath

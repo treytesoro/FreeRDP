@@ -22,7 +22,8 @@ jobs:
         uses: ilammy/msvc-dev-cmd@v1
         with:
           arch: amd64
-      - run: pwsh ./setup.ps1
+      - name: Start Build
+        run: pwsh ./setup.ps1
         working-directory: ${{ gitea.workspace }}/winscripts
       - name: Release
         uses: akkuman/gitea-release-action@v1
