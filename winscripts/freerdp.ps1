@@ -11,11 +11,11 @@ $libspath = Join-Path $freerdproot "libs"
 write-host "Libs path: $libspath"
 
 
-set-location ..
+# set-location ..
 
 cmake -GNinja `
     -B "$($freerdproot)\freerdp-build" `
-    -S freerdp `
+    -S . `
     -DCMAKE_BUILD_TYPE=Release `
     -DCMAKE_SKIP_INSTALL_ALL_DEPENDENCY=ON `
     -DCMAKE_INSTALL_PREFIX="$($freerdproot)\freerdpinstall" `
