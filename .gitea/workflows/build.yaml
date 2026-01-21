@@ -29,8 +29,9 @@ jobs:
         env:
           NODE_OPTIONS: '--experimental-fetch' # if nodejs < 18
         with:
-          name: "FreeRDP WpfRDP v${{ github.run_number }}"
+          name: "FreeRDP v${{ github.run_number }}"
           tag_name: "v${{ github.run_number }}"
+          body: "Automated build release v${{ github.run_number }} with wfreerdp embedded enhancements."
           files: |-
             freerdpinstall/bin/*.*
       - run: echo "This job's status is ${{ job.status }}."
