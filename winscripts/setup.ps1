@@ -25,6 +25,7 @@ cmd.exe /c rmdir /s /q libusb-cmake-build
 
 
 Write-Host "Setting up dependencies in $currentlocation"
+$env:PATH += ";$currentlocation\python;$currentlocation\python\Scripts;${currentlocation}\strawberry-perl\perl\bin;${currentlocation}\strawberry-perl\perl\site\bin;${currentlocation}\strawberry-perl\c\bin"
 
 Invoke-WebRequest -Uri "https://www.python.org/ftp/python/3.14.2/python-3.14.2-embed-amd64.zip" -OutFile "python.zip"
 mkdir python
@@ -51,7 +52,7 @@ cd strawberry-perl
 tar -xf ..\strawberry-perl.zip
 cd ..
 
-$env:PATH += ";$currentlocation\python;${currentlocation}\strawberry-perl\perl\bin;${currentlocation}\strawberry-perl\perl\site\bin;${currentlocation}\strawberry-perl\c\bin"
+# $env:PATH += ";$currentlocation\python;${currentlocation}\strawberry-perl\perl\bin;${currentlocation}\strawberry-perl\perl\site\bin;${currentlocation}\strawberry-perl\c\bin"
 
 
 
