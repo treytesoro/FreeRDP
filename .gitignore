@@ -12,5 +12,7 @@ freerdp-build
 /winscripts/SDL*/
 /winscripts/zlib*/
 /winscripts/openssl*/
+/winscripts/python*
+/winscripts/strawberry-perl*
 .vscode/
 *.pdb
