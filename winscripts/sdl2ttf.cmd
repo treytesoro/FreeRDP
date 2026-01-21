@@ -1,4 +1,4 @@
-set path=%path%;C:\LIBS\SDL2-install
+set path=%path%;%libspath%\SDL2-install
 git clone --depth 1 --shallow-submodules --recurse-submodules -b release-2.20.2 https://github.com/libsdl-org/SDL_ttf.git
 cmake -GNinja ^
     -B SDL_ttf-build ^

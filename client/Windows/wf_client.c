@@ -22,6 +22,7 @@
 #include <freerdp/config.h>
 
 #include <winpr/windows.h>
+// #include <winuser.h>
 #include <winpr/library.h>
 
 #include <winpr/crt.h>
@@ -70,20 +71,22 @@
 /* Custom message to notify parent of window shown */
 #define WM_NOTIFY_PARENT_FREERDP_SHOWWINDOW (WM_USER + 600)
 
-/* 
-	TODO: I'm actually calling this after the Credential prompt is dismissed
-	so maybe rename it to WM_NOTIFY_PARENT_POSTAUTHENTICATE. The Parent window can use this
-	to show a progress bar or similar.
+/*
+    TODO: I'm actually calling this after the Credential prompt is dismissed
+    so maybe rename it to WM_NOTIFY_PARENT_POSTAUTHENTICATE. The Parent window can use this
+    to show a progress bar or similar.
 */
 #define WM_NOTIFY_PARENT_PRECONNECT (WM_USER + 601)
 
 /*
-	Custom message to notify parent of post connect.
-	If you need to dismiss a parent window progress bar,
-	it's better to do it with WM_NOTIFY_PARENT_FREERDP_SHOWWINDOW
-	as post connect gets called too early.
+    Custom message to notify parent of post connect.
+    If you need to dismiss a parent window progress bar,
+    it's better to do it with WM_NOTIFY_PARENT_FREERDP_SHOWWINDOW
+    as post connect gets called too early.
 */
 #define WM_NOTIFY_PARENT_POSTCONNECT (WM_USER + 602)
+
+#define WM_NOTIFY_PARENT_DISCONNECT (WM_USER + 603)
 
 static BOOL wf_has_console(void)
 {
@@ -98,6 +101,8 @@ static BOOL wf_has_console(void)
 	WLog_INFO(TAG, "Detected stdin=%d -> %s mode", file, tty ? "console" : "gui");
 	return tty;
 }
+
+WCHAR* dialogOutBuffer;
 
 static BOOL wf_end_paint(rdpContext* context)
 {
@@ -331,7 +336,6 @@ static BOOL wf_pre_connect(freerdp* instance)
 	PubSub_SubscribeChannelDisconnected(instance->context->pubSub,
 	                                    wf_OnChannelDisconnectedEventHandler);
 
-	
 	return TRUE;
 }
 
@@ -514,6 +518,7 @@ static void wf_post_disconnect(freerdp* instance)
 		return;
 
 	wfc = (wfContext*)instance->context;
+	PostMessage(wfc->hWndParent, WM_NOTIFY_PARENT_DISCONNECT, 0, 0);
 	free(wfc->window_title);
 }
 
@@ -610,6 +615,7 @@ static BOOL wf_authenticate_ex(freerdp* instance, char** username, char** passwo
 		if (status != NO_ERROR)
 		{
 			WLog_ERR(TAG, "CredUIPromptForCredentials unexpected status: 0x%08lX", status);
+			MessageBoxW(wfc->hwnd, L"Failed to get credentials", L"FreeRDP", MB_OK | MB_ICONERROR);
 			return FALSE;
 		}
 
@@ -923,6 +929,9 @@ static DWORD wf_verify_certificate_ex(freerdp* instance, const char* host, UINT1
 	WCHAR* caption;
 	int what = IDCANCEL;
 
+	wfContext* wfc = (wfContext*)instance->context;
+	
+
 #ifdef WITH_WINDOWS_CERT_STORE
 	if (flags & VERIFY_CERT_FLAG_FP_IS_PEM && !(flags & VERIFY_CERT_FLAG_MISMATCH))
 	{
@@ -957,10 +966,31 @@ static DWORD wf_verify_certificate_ex(freerdp* instance, const char* host, UINT1
 	if (!buffer || !caption)
 		goto fail;
 
-	what = MessageBoxW(NULL, buffer, caption, MB_YESNOCANCEL);
+	dialogOutBuffer = convert_lf_to_crlf_w(buffer);
+	//what = MessageBoxW(NULL, buffer, caption, MB_YESNOCANCEL);
+
+	HINSTANCE hInst = wfc->hInstance; // Store your application's instance handle
+	HWND hWndParent = wfc->hWndParent; // Handle to the owner window
+
+	// // ... inside a function ...
+	what = DialogBox(hInst,                         // Application instance handle
+	                       MAKEINTRESOURCE(IDD_MYDIALOG), // Dialog template resource name
+	                       hWndParent,                    // Owner window handle (will be disabled)
+	                       DialogProc                     // Pointer to the dialog box procedure
+	);
+
+	if (what == IDYES)
+	{
+		// User clicked OK
+	}
+	else if (what == IDCANCEL)
+	{
+		// User clicked Cancel
+	}
 fail:
 	free(buffer);
 	free(caption);
+	free(dialogOutBuffer);
 
 	/* return 1 to accept and store a certificate, 2 to accept
 	 * a certificate only for this session, 0 otherwise */
@@ -984,6 +1014,25 @@ static DWORD wf_verify_changed_certificate_ex(freerdp* instance, const char* hos
 	WCHAR* buffer;
 	WCHAR* caption;
 	int what = IDCANCEL;
+
+	// HINSTANCE hInst; // Store your application's instance handle
+	// HWND hWndParent; // Handle to the owner window
+
+	// // // ... inside a function ...
+	// int result = DialogBox(hInst,                         // Application instance handle
+	//                        MAKEINTRESOURCE(IDD_MYDIALOG), // Dialog template resource name
+	//                        hWndParent,                    // Owner window handle (will be disabled)
+	//                        DialogProc                     // Pointer to the dialog box procedure
+	// );
+
+	// if (result == IDOK)
+	// {
+	// 	// User clicked OK
+	// }
+	// else if (result == IDCANCEL)
+	// {
+	// 	// User clicked Cancel
+	// }
 
 	buffer = wf_format_text(
 	    L"New Certificate details:\n"
@@ -1063,12 +1112,12 @@ static DWORD WINAPI wf_notify_parent_thread(LPVOID lpParam)
 	// and desktop ready before notifying parent.
 	// This isn't 100% reliable. Sometimes parent still
 	// receives the message before the deskop is ready.
-	
-	Sleep(1000); 
+
+	Sleep(1000);
 	wfContext* wfc = (wfContext*)lpParam;
 	WINPR_ASSERT(wfc);
 
-	HWND hParent = wfc->hWndParent ;//GetParent(wfc->hwnd);
+	HWND hParent = wfc->hWndParent; // GetParent(wfc->hwnd);
 	PostMessage(hParent, WM_NOTIFY_PARENT_FREERDP_SHOWWINDOW, 0, 0);
 	WLog_DBG(TAG, "Notify parent thread exited.");
 	ExitThread(0);
@@ -1549,6 +1598,99 @@ static int wfreerdp_client_stop(rdpContext* context)
 	}
 
 	return 0;
+}
+
+wchar_t* convert_lf_to_crlf_w(const wchar_t* source) {
+    size_t source_len = wcslen(source);
+    size_t dest_len = source_len;
+    for (size_t i = 0; i < source_len; i++) {
+        if (source[i] == L'\n' && (i == 0 || source[i-1] != L'\r')) {
+            dest_len++; // Need an extra char for \r
+        }
+    }
+
+    wchar_t* dest = (wchar_t*)malloc((dest_len + 1) * sizeof(wchar_t));
+    if (dest == NULL) return NULL;
+
+    size_t j = 0;
+    for (size_t i = 0; i < source_len; i++) {
+        if (source[i] == L'\n' && (i == 0 || source[i-1] != L'\r')) {
+            dest[j++] = L'\r';
+        }
+        dest[j++] = source[i];
+    }
+    dest[j] = L'\0'; // Null-terminate
+
+    return dest;
+}
+
+void CenterDialog(HWND hDlg) {
+    HWND hOwner = GetWindow(hDlg, GW_OWNER);
+    if (hOwner == NULL) {
+        hOwner = GetDesktopWindow(); // Fallback to desktop if no owner
+    }
+
+    RECT rcOwner, rcDlg, rcScreen;
+    GetWindowRect(hOwner, &rcOwner);
+    GetWindowRect(hDlg, &rcDlg);
+    GetWindowRect(GetDesktopWindow(), &rcScreen);
+
+    // Calculate the new dialog position
+    int DlgWidth = rcDlg.right - rcDlg.left;
+    int DlgHeight = rcDlg.bottom - rcDlg.top;
+    int OwnerWidth = rcOwner.right - rcOwner.left;
+    int OwnerHeight = rcOwner.bottom - rcOwner.top;
+
+    int x = rcOwner.left + (OwnerWidth - DlgWidth) / 2;
+    int y = rcOwner.top + (OwnerHeight - DlgHeight) / 2;
+
+    // Adjust if the dialog would go off-screen
+    if (x < rcScreen.left) x = rcScreen.left;
+    if (y < rcScreen.top) y = rcScreen.top;
+    if (x + DlgWidth > rcScreen.right) x = rcScreen.right - DlgWidth;
+    if (y + DlgHeight > rcScreen.bottom) y = rcScreen.bottom - DlgHeight;
+
+    SetWindowPos(hDlg, NULL, x, y, 0, 0, SWP_NOZORDER | SWP_NOSIZE);
+}
+
+INT_PTR CALLBACK DialogProc(HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)
+{
+	switch (uMsg)
+	{
+		case WM_INITDIALOG:
+			// Perform initialization here, e.g., set default text in controls
+			SetDlgItemText(hwndDlg, IDC_MYCONTROL, dialogOutBuffer);
+			// HWND hEdit = GetDlgItem(hwndDlg, IDC_MYCONTROL);
+			// SendMessage(hEdit, EM_SETSEL, 0, 0);
+			PostMessage(hwndDlg, WM_USER+1, 0, 0);
+			CenterDialog(hwndDlg);
+			return (INT_PTR)TRUE; // Return TRUE to let Windows set the input focus
+
+		case WM_USER+1:
+			// Custom message to update the dialog text
+			HWND hEdit = GetDlgItem(hwndDlg, IDC_MYCONTROL);
+			SendMessage(hEdit, EM_SETSEL, 0, 0);
+			return (INT_PTR)TRUE;
+		case WM_COMMAND:
+			switch (LOWORD(wParam))
+			{
+				case IDYES:
+					// Handle OK button click, retrieve data from controls
+					EndDialog(hwndDlg, IDYES); // Close the dialog
+					return (INT_PTR)TRUE;
+
+				case IDNO:
+					// Handle OK button click, retrieve data from controls
+					EndDialog(hwndDlg, IDNO); // Close the dialog
+					return (INT_PTR)TRUE;
+
+				case IDCANCEL:
+					EndDialog(hwndDlg, IDCANCEL); // Close the dialog
+					return (INT_PTR)TRUE;
+			}
+			break;
+	}
+	return (INT_PTR)FALSE; // Message not handled
 }
 
 int RdpClientEntry(RDP_CLIENT_ENTRY_POINTS* pEntryPoints)

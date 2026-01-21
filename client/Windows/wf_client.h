@@ -152,6 +152,10 @@ extern "C"
 	FREERDP_API int RdpClientEntry(RDP_CLIENT_ENTRY_POINTS* pEntryPoints);
 	FREERDP_API int freerdp_client_set_window_size(wfContext* wfc, int width, int height);
 	FREERDP_API void wf_size_scrollbars(wfContext* wfc, UINT32 client_width, UINT32 client_height);
+	INT_PTR CALLBACK DialogProc(HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM lParam);
+	void CenterDialog(HWND hDlg);
+	wchar_t* convert_lf_to_crlf_w(const wchar_t* source);
+
 
 #ifdef __cplusplus
 }

@@ -1,0 +1,638 @@
+C:\Users\trey\source\repos\FreeRDP\winscripts
+Setting up dependencies in C:\Users\trey\source\repos\FreeRDP\winscripts
+C:\Users\trey\source\repos\FreeRDP\winscripts
+CMake Warning at cmake/ClangDetectTool.cmake:11 (message):
+  clang tool clang-format (CLANG_FORMAT) not detected, skipping
+Call Stack (most recent call first):
+  cmake/ClangFormat.cmake:13 (clang_detect_tool)
+  CMakeLists.txt:76 (include)
+
+
+CMake Warning at cmake/ClangFormat.cmake:16 (message):
+  clang-format not found in path! code format target not available.
+Call Stack (most recent call first):
+  CMakeLists.txt:76 (include)
+
+
+--  default symbol visibility: hidden
+CMake Warning at cmake/CheckAndSetFlag.cmake:29 (message):
+  compiler does not support -fvisibility=hidden
+Call Stack (most recent call first):
+  cmake/ExportAllSymbols.cmake:10 (checkandsetflag)
+  cmake/CommonCompilerFlags.cmake:35 (include)
+  cmake/CompilerFlags.cmake:2 (include)
+  CMakeLists.txt:79 (include)
+
+
+CMake Warning at cmake/CompilerFlags.cmake:9 (message):
+  compiler does not support -fno-omit-frame-pointer
+Call Stack (most recent call first):
+  cmake/CompilerFlags.cmake:32 (checkcflag)
+  CMakeLists.txt:79 (include)
+
+
+CMake Warning at cmake/CompilerFlags.cmake:9 (message):
+  compiler does not support -Wredundant-decls
+Call Stack (most recent call first):
+  cmake/CompilerFlags.cmake:32 (checkcflag)
+  CMakeLists.txt:79 (include)
+
+
+CMake Warning at cmake/CompilerFlags.cmake:9 (message):
+  compiler does not support -Wimplicit-function-declaration
+Call Stack (most recent call first):
+  cmake/CompilerFlags.cmake:32 (checkcflag)
+  CMakeLists.txt:79 (include)
+
+
+Using CFLAGS /DWIN32 /D_WINDOWS /W3
+Using CFLAGS_RELEASE /O2 /Ob2 /DNDEBUG
+Using CFLAGS_DEBUG /Zi /Ob0 /Od /RTC1
+Using CFLAGS_MINSIZEREL /O1 /Ob1 /DNDEBUG
+Using CFLAGS_RELWITHDEBINFO /Zi /O2 /Ob1 /DNDEBUG
+CMake Warning at cmake/ConfigOptions.cmake:109 (message):
+  WITH_DEBUG_KBD=ON, the build might leak sensitive information, do not use
+  with release builds!
+Call Stack (most recent call first):
+  CMakeLists.txt:89 (include)
+
+
+FREERDP_VERSION=3.20.1-dev0
+-- Git Revision e251e9759
+--  default symbol visibility: hidden
+CMake Warning at cmake/CheckAndSetFlag.cmake:29 (message):
+  compiler does not support -fvisibility=hidden
+Call Stack (most recent call first):
+  cmake/ExportAllSymbols.cmake:10 (checkandsetflag)
+  CMakeLists.txt:188 (include)
+
+
+-- Skipping disabled feature Wayland for Wayland (Wayland client)
+-- Finding required feature OpenSSL for cryptography (encryption, certificate validation, hashing functions)
+-- Skipping optional feature MbedTLS for cryptography ([experimental] encryption, certificate validation, hashing functions)
+--     Enable feature MbedTLS using "-DWITH_MBEDTLS=ON"
+-- Skipping disabled feature PCSC for smart card (smart card device redirection)
+-- Skipping optional feature OpenH264 for codec (use OpenH264 library)
+--     Enable feature OpenH264 using "-DWITH_OPENH264=ON"
+-- Skipping optional feature GSM for codec (GSM audio codec library)
+--     Enable feature GSM using "-DWITH_GSM=ON"
+-- Skipping optional feature LAME for codec (lame MP3 audio codec library)
+--     Enable feature LAME using "-DWITH_LAME=ON"
+-- Skipping optional feature FAAD2 for codec (FAAD2 AAC audio codec library)
+--     Enable feature FAAD2 using "-DWITH_FAAD2=ON"
+-- Skipping optional feature FAAC for codec (FAAC AAC audio codec library)
+--     Enable feature FAAC using "-DWITH_FAAC=ON"
+-- Skipping optional feature soxr for codec (SOX audio resample library)
+--     Enable feature soxr using "-DWITH_SOXR=ON"
+-- Using OpenSSL Version: 4.0.0
+using default plugins location
+build is using MSVC runtime MultiThreaded$<$<CONFIG:Debug>:Debug>DLL
+Configured RPATH=
+-- Finding recommended feature OpenSSL for cryptography (encryption, certificate validation, hashing functions)
+--     Disable feature OpenSSL using "-DWITH_OPENSSL=OFF"
+-- Skipping optional feature MbedTLS for cryptography (encryption, certificate validation, hashing functions)
+--     Enable feature MbedTLS using "-DWITH_MBEDTLS=ON"
+-- Warning: Property DESCRIPTION for package MbedTLS already set to "[experimental] encryption, certificate validation, hashing functions", overriding it with "encryption, certificate validation, hashing functions"
+CMake Warning at cmake/JsonDetect.cmake:6 (find_package):
+  By not providing "Findjansson.cmake" in CMAKE_MODULE_PATH this project has
+  asked CMake to find a package configuration file provided by "jansson", but
+  CMake did not find one.
+
+  Could not find a package configuration file provided by "jansson"
+  (requested version 2.13) with any of the following names:
+
+    janssonConfig.cmake
+    jansson-config.cmake
+
+  Add the installation prefix of "jansson" to CMAKE_PREFIX_PATH or set
+  "jansson_DIR" to a directory containing one of the above files.  If
+  "jansson" provides a separate development package or SDK, be sure it has
+  been installed.
+Call Stack (most recent call first):
+  cmake/JsonDetect.cmake:139 (detect_package)
+  winpr/libwinpr/CMakeLists.txt:19 (include)
+
+
+-- Could NOT find PkgConfig (missing: PKG_CONFIG_EXECUTABLE) 
+CMake Warning at cmake/JsonDetect.cmake:6 (find_package):
+  By not providing "Findjson-c.cmake" in CMAKE_MODULE_PATH this project has
+  asked CMake to find a package configuration file provided by "json-c", but
+  CMake did not find one.
+
+  Could not find a package configuration file provided by "json-c" with any
+  of the following names:
+
+    json-cConfig.cmake
+    json-c-config.cmake
+
+  Add the installation prefix of "json-c" to CMAKE_PREFIX_PATH or set
+  "json-c_DIR" to a directory containing one of the above files.  If "json-c"
+  provides a separate development package or SDK, be sure it has been
+  installed.
+Call Stack (most recent call first):
+  cmake/JsonDetect.cmake:150 (detect_package)
+  winpr/libwinpr/CMakeLists.txt:19 (include)
+
+
+-- Could NOT find PkgConfig (missing: PKG_CONFIG_EXECUTABLE) 
+-- Could NOT find PkgConfig (missing: PKG_CONFIG_EXECUTABLE) 
+-- Could NOT find libsystemd (missing: LIBSYSTEMD_LIBRARY LIBSYSTEMD_INCLUDE_DIR) 
+add_library(winpr) []
+add_library(winpr-tools) []
+add_executable(winpr-makecert) []
+add_executable(winpr-hash) []
+-- Could NOT find PkgConfig (missing: PKG_CONFIG_EXECUTABLE) 
+-- Could NOT find Cairo (missing: CAIRO_LIBRARIES CAIRO_INCLUDE_DIR) 
+CMake Warning at libfreerdp/CMakeLists.txt:145 (find_package):
+  By not providing "FindOpus.cmake" in CMAKE_MODULE_PATH this project has
+  asked CMake to find a package configuration file provided by "Opus", but
+  CMake did not find one.
+
+  Could not find a package configuration file provided by "Opus" with any of
+  the following names:
+
+    OpusConfig.cmake
+    opus-config.cmake
+
+  Add the installation prefix of "Opus" to CMAKE_PREFIX_PATH or set
+  "Opus_DIR" to a directory containing one of the above files.  If "Opus"
+  provides a separate development package or SDK, be sure it has been
+  installed.
+
+
+-- Could NOT find PkgConfig (missing: PKG_CONFIG_EXECUTABLE) 
+Using OPUS: OFF
+CMake Warning at libfreerdp/CMakeLists.txt:193 (message):
+  -DWITH_SWSCALE=OFF and -DWITH_CAIRO=OFF, compiling without image scaling
+  support!
+
+
+CMake Warning at libfreerdp/CMakeLists.txt:203 (message):
+  Compiling without WITH_DSP_FFMPEG, WITH_FAAC and WITH_FDK_AAC.  AAC encoder
+  support disabled
+
+
+INTRINSIC_TYPE=sse3: does not require linker flags, enabled by default
+INTRINSIC_TYPE=neon: does not require linker flags, enabled by default
+INTRINSIC_TYPE=sse3: does not require linker flags, enabled by default
+INTRINSIC_TYPE=ssse3: does not require linker flags, enabled by default
+INTRINSIC_TYPE=sse4.1: does not require linker flags, enabled by default
+[SIMD] linking sse4.2 [/arch:SSE4.2]: 
+[SIMD] linking avx2 [/arch:AVX2]: sse/prim_copy_avx2.c
+INTRINSIC_TYPE=neon: does not require linker flags, enabled by default
+add_library(freerdp) []
+-- Adding STATIC channel client server "drdynvc": Dynamic Virtual Channel Extension
+-- Adding DYNAMIC channel client "video": Video optimized remoting Virtual Channel Extension
+-- Adding DYNAMIC channel server "telemetry": Telemetry Virtual Channel Extension
+-- Adding DEVICE channel client "smartcard": Smart Card Virtual Channel Extension
+Serial redirection not supported on windows
+-- Adding DEVICE channel "serial": Serial Port Virtual Channel Extension
+-- Adding STATIC channel client server "remdesk": Remote Assistance Virtual Channel Extension
+-- Adding STATIC channel client server "rdpsnd": Audio Output Virtual Channel Extension
+-- Adding DYNAMIC channel client server "rdpgfx": Graphics Pipeline Extension
+-- Adding DYNAMIC channel server "rdpemsc": Mouse Cursor Virtual Channel Extension
+-- Adding DYNAMIC channel client server "rdpei": Input Virtual Channel Extension
+-- Adding DYNAMIC channel server "rdpecam": Video Capture Virtual Channel Extension
+-- Adding STATIC channel client server "rdpdr": Device Redirection Virtual Channel Extension
+-- Adding STATIC channel client server "rail": Remote Programs Virtual Channel Extension
+-- Adding DEVICE channel client "printer": Print Virtual Channel Extension
+Serial redirection not supported on windows
+-- Adding DEVICE channel "parallel": Parallel Port Virtual Channel Extension
+-- Adding DYNAMIC channel client server "location": Location Virtual Channel Extension
+-- Adding DYNAMIC channel client "geometry": Geometry tracking Virtual Channel Extension
+-- Adding STATIC channel client server "encomsp": Multiparty Virtual Channel Extension
+-- Adding DYNAMIC channel client server "echo": Echo Virtual Channel Extension
+-- Adding DEVICE channel client "drive": Drive Redirection Virtual Channel Extension
+-- Adding DYNAMIC channel client server "disp": Display Update Virtual Channel Extension
+-- Adding STATIC channel client server "cliprdr": Clipboard Virtual Channel Extension
+-- Adding DYNAMIC channel client server "audin": Audio Input Redirection Virtual Channel Extension
+-- Adding DYNAMIC channel client server "ainput": Advanced Input Virtual Channel Extension
+add_library(freerdp-client) []
+CMake Warning at cmake/WarnUnmaintained.cmake:2 (message):
+  [unmaintained] wfreerdp-client is unmaintained!
+Call Stack (most recent call first):
+  client/Windows/CMakeLists.txt:22 (warn_unmaintained)
+
+
+CMake Warning at cmake/WarnUnmaintained.cmake:3 (message):
+  [unmaintained] use at your own risk!
+Call Stack (most recent call first):
+  client/Windows/CMakeLists.txt:22 (warn_unmaintained)
+
+
+CMake Warning at cmake/WarnUnmaintained.cmake:4 (message):
+  [unmaintained] If problems occur please check
+  https://github.com/FreeRDP/FreeRDP/issues for known issues, but be prepared
+  to fix them on your own!
+Call Stack (most recent call first):
+  client/Windows/CMakeLists.txt:22 (warn_unmaintained)
+
+
+CMake Warning at cmake/WarnUnmaintained.cmake:8 (message):
+  [unmaintained] Developers hang out in
+  https://matrix.to/#/#FreeRDP:matrix.org?via=matrix.org
+Call Stack (most recent call first):
+  client/Windows/CMakeLists.txt:22 (warn_unmaintained)
+
+
+CMake Warning at cmake/WarnUnmaintained.cmake:9 (message):
+  [unmaintained] - don't hesitate to ask some questions.  (replies might take
+  some time depending on your timezone)
+Call Stack (most recent call first):
+  client/Windows/CMakeLists.txt:22 (warn_unmaintained)
+
+
+CMake Warning at cmake/WarnUnmaintained.cmake:13 (message):
+  [unmaintained] - if you intend using this component write us a message
+Call Stack (most recent call first):
+  client/Windows/CMakeLists.txt:22 (warn_unmaintained)
+
+
+CMake Warning at cmake/WarnUnmaintained.cmake:14 (message):
+  [unmaintained] use -DWITH_CLIENT_WINDOWS=OFF to disable
+Call Stack (most recent call first):
+  client/Windows/CMakeLists.txt:22 (warn_unmaintained)
+
+
+add_library(wfreerdp-client) []
+add_executable(wfreerdp) [WIN32]
+project sdl-freerdp is using version 3.20.1
+build is using MSVC runtime MultiThreaded$<$<CONFIG:Debug>:Debug>DLL
+Configured RPATH=
+--  default symbol visibility: hidden
+CMake Warning at cmake/CheckAndSetFlag.cmake:29 (message):
+  compiler does not support -fvisibility=hidden
+Call Stack (most recent call first):
+  cmake/ExportAllSymbols.cmake:10 (checkandsetflag)
+  cmake/CommonCompilerFlags.cmake:35 (include)
+  cmake/CXXCompilerFlags.cmake:2 (include)
+  client/SDL/CMakeLists.txt:36 (include)
+
+
+CMake Warning at cmake/CXXCompilerFlags.cmake:9 (message):
+  compiler does not support -fno-omit-frame-pointer
+Call Stack (most recent call first):
+  cmake/CXXCompilerFlags.cmake:38 (checkcxxflag)
+  client/SDL/CMakeLists.txt:36 (include)
+
+
+CMake Warning at cmake/CXXCompilerFlags.cmake:9 (message):
+  compiler does not support -Wredundant-decls
+Call Stack (most recent call first):
+  cmake/CXXCompilerFlags.cmake:38 (checkcxxflag)
+  client/SDL/CMakeLists.txt:36 (include)
+
+
+Using CXXFLAGS -IC:\Users\trey\source\repos\FreeRDP\libs\SDL2TTF-install\include\SDL2 -IC:\Users\trey\source\repos\FreeRDP\libs\SDL3TTF-install\include\SDL2
+Using CXXFLAGS_RELEASE /O2 /Ob2 /DNDEBUG
+Using CXXFLAGS_DEBUG /Zi /Ob0 /Od /RTC1
+Using CXXFLAGS_MINSIZEREL /O1 /Ob1 /DNDEBUG
+Using CXXFLAGS_RELWITHDEBINFO /Zi /O2 /Ob1 /DNDEBUG
+Building both, SDL2 and SDL3 clients, forcing WITH_CLIENT_SDL_VERSIONED=ON
+add_executable(sdl2-freerdp) [WIN32]
+add_executable(sdl3-freerdp) [WIN32]
+-- Intrinsic path configuration:
+-- FREERDP_INSTALL_PREFIX=.
+-- FREERDP_LIBRARY_PATH=.
+-- FREERDP_PLUGIN_PATH=.
+-- FREERDP_ADDIN_PATH=.
+-- FREERDP_EXTENSION_PATH=C:/Users/trey/source/repos/FreeRDP/freerdpinstall/lib/freerdp3/extensions
+-- FREERDP_PROXY_PLUGINDIR=./proxy/
+-- Configuring done (4.0s)
+-- Generating done (0.6s)
+-- Build files have been written to: C:/Users/trey/source/repos/FreeRDP/freerdp-build
+[1/4] Building CXX object client\SDL\common\res\CMakeFiles\sdl-common-client-res.dir\resource-init.cpp.obj
+[2/4] Linking CXX static library client\SDL\common\res\sdl-common-client-res.lib
+[3/4] Linking CXX executable client\SDL\SDL2\sdl2-freerdp.exe
+[4/4] Linking CXX executable client\SDL\SDL3\sdl3-freerdp.exe
+-- Install configuration: "Debug"
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/lib/cmake/FreeRDP3/FreeRDPTargets.cmake
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/lib/cmake/FreeRDP3/FreeRDPTargets-debug.cmake
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/bin/msvcp140.dll
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/bin/msvcp140_1.dll
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/bin/msvcp140_2.dll
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/bin/msvcp140_atomic_wait.dll
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/bin/msvcp140_codecvt_ids.dll
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/bin/vcruntime140_1.dll
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/bin/vcruntime140.dll
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/bin/concrt140.dll
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/lib/cmake/WinPR3/WinPRConfig.cmake
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/lib/cmake/WinPR3/WinPRConfigVersion.cmake
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/lib/cmake/WinPR3/WinPRTargets.cmake
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/lib/cmake/WinPR3/WinPRTargets-debug.cmake
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/lib/pkgconfig/winpr3.pc
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/lib/winpr3.lib
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/bin/winpr3.dll
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/lib/winpr-tools3.lib
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/bin/winpr-tools3.dll
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/lib/pkgconfig/winpr-tools3.pc
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/lib/cmake/WinPR-tools3/WinPR-toolsConfig.cmake
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/lib/cmake/WinPR-tools3/WinPR-toolsConfigVersion.cmake
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/lib/cmake/WinPR-tools3/WinPR-toolsTargets.cmake
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/lib/cmake/WinPR-tools3/WinPR-toolsTargets-debug.cmake
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/bin/winpr-makecert.exe
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/bin/winpr-hash.exe
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/asn1.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/assert-api.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/assert.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/bcrypt.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/bitstream.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/cast.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/clipboard.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/cmdline.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/collections.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/comm.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/cred.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/crt.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/crypto.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/custom-crypto.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/debug.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/dsparse.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/endian.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/environment.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/error.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/file.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/handle.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/image.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/ini.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/input.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/interlocked.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/intrin.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/io.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/json.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/library.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/memory.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/ncrypt.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/nt.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/ntlm.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/pack.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/path.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/pipe.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/platform.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/pool.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/print.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/registry.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/rpc.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/sam.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/schannel.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/secapi.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/security.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/shell.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/smartcard.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/spec.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/ssl.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/sspi.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/sspicli.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/stream.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/string.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/strlst.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/synch.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/sysinfo.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/tchar.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/thread.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/timezone.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/tools
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/tools/makecert.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/user.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/wincrypt.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/windows.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/winpr.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/winsock.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/wlog.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/wtsapi.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/wtypes.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/build-config.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/buildflags.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/config.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/winpr3/winpr/version.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/lib/freerdp3.lib
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/bin/freerdp3.dll
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/lib/pkgconfig/freerdp3.pc
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/lib/cmake/FreeRDP3/FreeRDPConfig.cmake
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/lib/cmake/FreeRDP3/FreeRDPConfigVersion.cmake
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/lib/pkgconfig/freerdp-client3.pc
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/lib/cmake/FreeRDP-Client3/FreeRDP-ClientConfig.cmake
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/lib/cmake/FreeRDP-Client3/FreeRDP-ClientConfigVersion.cmake
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/lib/cmake/FreeRDP-Client3/FreeRDP-ClientTargets.cmake
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/lib/cmake/FreeRDP-Client3/FreeRDP-ClientTargets-debug.cmake
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/lib/freerdp-client3.lib
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/bin/freerdp-client3.dll
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/lib/wfreerdp-client3.lib
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/bin/wfreerdp-client3.dll
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/bin/wfreerdp.exe
+-- Installing: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/bin/sdl2-freerdp.exe
+-- Installing: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/bin/sdl3-freerdp.exe
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/addin.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/altsec.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/api.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/assistance.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/autodetect.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/cache
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/cache/persistent.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/channels
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/channels/ainput.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/channels/audin.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/channels/channels.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/channels/cliprdr.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/channels/disp.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/channels/drdynvc.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/channels/echo.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/channels/encomsp.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/channels/geometry.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/channels/gfxredir.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/channels/location.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/channels/log.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/channels/rail.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/channels/rdp2tcp.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/channels/rdpdr.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/channels/rdpear.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/channels/rdpecam.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/channels/rdpei.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/channels/rdpemsc.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/channels/rdpewa.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/channels/rdpgfx.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/channels/rdpsnd.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/channels/remdesk.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/channels/scard.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/channels/telemetry.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/channels/tsmf.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/channels/urbdrc.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/channels/video.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/channels/wtsvc.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/client
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/client/ainput.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/client/audin.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/client/channels.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/client/client_cliprdr_file.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/client/cliprdr.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/client/cmdline.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/client/disp.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/client/drdynvc.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/client/encomsp.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/client/file.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/client/geometry.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/client/location.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/client/printer.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/client/rail.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/client/rdpdr.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/client/rdpei.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/client/rdpgfx.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/client/rdpsnd.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/client/remdesk.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/client/sshagent.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/client/tsmf.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/client/utils
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/client/utils/smartcard_cli.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/client/video.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/client.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/codec
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/codec/audio.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/codec/bitmap.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/codec/bulk.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/codec/clear.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/codec/color.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/codec/dsp.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/codec/h264.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/codec/interleaved.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/codec/jpeg.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/codec/nsc.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/codec/planar.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/codec/progressive.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/codec/region.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/codec/rfx.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/codec/yuv.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/codec/zgfx.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/codecs.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/constants.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/crypto
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/crypto/ber.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/crypto/certificate.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/crypto/certificate_data.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/crypto/certificate_store.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/crypto/crypto.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/crypto/der.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/crypto/er.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/crypto/per.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/crypto/privatekey.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/display.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/dvc.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/emulate
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/emulate/scard
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/emulate/scard/smartcard_emulate.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/error.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/event.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/extension.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/freerdp.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/gdi
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/gdi/bitmap.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/gdi/dc.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/gdi/gdi.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/gdi/gfx.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/gdi/pen.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/gdi/region.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/gdi/shape.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/gdi/video.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/graphics.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/heartbeat.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/input.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/license.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/listener.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/locale
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/locale/keyboard.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/locale/locale.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/log.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/message.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/metrics.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/peer.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/pointer.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/primary.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/primitives.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/rail.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/redirection.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/scancode.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/secondary.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/server
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/server/ainput.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/server/audin.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/server/channels.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/server/cliprdr.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/server/disp.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/server/drdynvc.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/server/echo.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/server/encomsp.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/server/gfxredir.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/server/location.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/server/proxy
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/server/proxy/proxy_config.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/server/proxy/proxy_context.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/server/proxy/proxy_log.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/server/proxy/proxy_modules_api.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/server/proxy/proxy_server.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/server/proxy/proxy_types.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/server/rail.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/server/rdpdr.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/server/rdpecam-enumerator.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/server/rdpecam.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/server/rdpei.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/server/rdpemsc.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/server/rdpgfx.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/server/rdpsnd.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/server/remdesk.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/server/server-common.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/server/shadow.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/server/telemetry.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/session.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/settings.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/settings_types.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/settings_types_private.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/streamdump.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/svc.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/timer.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/transport_io.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/types.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/update.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/utils
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/utils/aad.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/utils/cliprdr_utils.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/utils/drdynvc.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/utils/encoded_types.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/utils/gfx.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/utils/helpers.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/utils/http.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/utils/passphrase.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/utils/pcap.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/utils/pod_arrays.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/utils/profiler.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/utils/proxy_utils.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/utils/rdpdr_utils.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/utils/ringbuffer.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/utils/signal.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/utils/smartcardlogon.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/utils/smartcard_call.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/utils/smartcard_operations.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/utils/smartcard_pack.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/utils/stopwatch.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/utils/string.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/window.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/build-config.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/buildflags.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/config.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/settings_keys.h
+-- Up-to-date: C:/Users/trey/source/repos/FreeRDP/freerdpinstall/include/freerdp3//freerdp/version.h
+        1 file(s) copied.
+        1 file(s) copied.
+        1 file(s) copied.
+        1 file(s) copied.
+        1 file(s) copied.
+        1 file(s) copied.
+        1 file(s) copied.
+        1 file(s) copied.
+        1 file(s) copied.
+C:\Users\trey\source\repos\FreeRDP\libs\OPENSSL-install\bin\libcrypto-4-x64.dll
+C:\Users\trey\source\repos\FreeRDP\libs\OPENSSL-install\bin\libssl-4-x64.dll
+        2 file(s) copied.
+        1 file(s) copied.

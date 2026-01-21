@@ -10,3 +10,6 @@
 #define IDB_CLOSE_ACT 100
 #define IDB_RESTORE 111
 #define IDB_RESTORE_ACT 112
+#define IDD_MYDIALOG 101
+#define IDC_MYCONTROL 1001
+#define IDYES 6

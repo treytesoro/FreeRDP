@@ -1,5 +1,6 @@
 
 #include "resource.h"
+#include <winres.h>
 
 IDI_ICON1              ICON                    "FreeRDP.ico"
 IDB_MINIMIZE           BITMAP                  "minimize.bmp"
@@ -12,3 +13,16 @@ IDB_CLOSE              BITMAP                  "close.bmp"
 IDB_CLOSE_ACT          BITMAP                  "close_active.bmp"
 IDB_RESTORE            BITMAP                  "restore.bmp"
 IDB_RESTORE_ACT        BITMAP                  "restore_active.bmp"
+
+
+IDD_MYDIALOG DIALOGEX 0, 0, 400, 300
+STYLE DS_SHELLFONT | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Certificate Warning"
+FONT 8, "MS Shell Dlg"
+{
+    LTEXT "Certificate not trusted:", IDC_STATIC, 10, 10, 100, 10
+    EDITTEXT IDC_MYCONTROL, 10, 25, 380, 200, WS_BORDER | WS_VSCROLL | ES_MULTILINE | ES_READONLY
+    PUSHBUTTON "Yes", IDYES, 130, 240, 40, 20
+    PUSHBUTTON "No", IDNO, 180, 240, 40, 20
+    PUSHBUTTON "Cancel", IDCANCEL, 230, 240, 40, 20
+}

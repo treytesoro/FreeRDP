@@ -735,6 +735,25 @@ static BOOL sdl_create_windows(SdlContext* sdl)
 		}
 
 		sdl->windows.insert({ window.id(), std::move(window) });
+
+		//if(sdl->context()->settings->ParentWindowId)
+		//{
+			// SDL_Window* sdlWindow = window.window();
+			// SDL_PropertiesID props = SDL_GetWindowProperties(window.window());
+			// UINT64 parentID = sdl->context()->settings->ParentWindowId;
+			// HWND hwnd = (HWND)SDL_GetPointerProperty(SDL_GetWindowProperties(window.window()), SDL_PROP_WINDOW_WIN32_HWND_POINTER, NULL);
+
+			// LONG currentStyle = GetWindowLong(hwnd, GWL_STYLE);
+
+			// // 2. Remove the desired styles using bitwise operations
+			// currentStyle &= ~(WS_CHILD | WS_POPUP | WS_THICKFRAME | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_SYSMENU);
+			// // Note: For 64-bit systems, you should use GetWindowLongPtr/SetWindowLongPtr and cast accordingly.
+
+			// // 3. Apply the new styles
+			// SetWindowLong(hwnd, GWL_STYLE, currentStyle);
+
+			// SetParent(hwnd, (HWND)sdl->context()->settings->ParentWindowId);
+		//}
 	}
 
 	return TRUE;
