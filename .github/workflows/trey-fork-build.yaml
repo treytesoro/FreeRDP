@@ -22,16 +22,14 @@ jobs:
         uses: ilammy/msvc-dev-cmd@v1
         with:
           arch: amd64
-      - run: pwsh ./setup.ps1
+      - name: Start Build
+        run: pwsh ./setup.ps1
         working-directory: ${{ github.workspace }}/winscripts
       - name: Release
-        uses: actions/create-release@v1
+        working-directory: ${{ github.workspace }}/winscripts
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          release_name: "FreeRDP v${{ github.run_number }}"
-          tag_name: "v${{ github.run_number }}"
-          body: "Automated build release v${{ github.run_number }} with wfreerdp embedded enhancements."
-          files: |-
-            freerdpinstall/bin/*.*
+          TAG: ${{ github.ref_name }}
+        run:
+          pwsh.exe ./github-release.ps1
       - run: echo "This job's status is ${{ job.status }}."

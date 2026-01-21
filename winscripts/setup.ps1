@@ -101,6 +101,13 @@ $env:PATH += ";$libspath\cJSON-install;$libspath\SDL2-install;$libspath\SDL2IMAG
 
 Set-Location $currentlocation
 
+$compress = @{
+  Path = "$currentlocation\freerdpinstall\bin"
+  CompressionLevel = "Fastest"
+  DestinationPath = "$currentlocation\freerdpinstall\build-wfreerdp-win32.zip"
+}
+Compress-Archive @compress
+
 # Clean up artifacts
 # Remove-TempBuildFiles
 
