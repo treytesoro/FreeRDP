@@ -1,0 +1,21 @@
+name: FreeRDP WpfRDP Build
+
+on: [workflow_dispatch]
+
+jobs:
+  FreeRDP-build-actions:
+    runs-on: win-runner-vm
+    steps:
+      - run: echo "The job was automatically triggered by a ${{ gitea.event_name }} event."
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - run: echo "The repository has been cloned to the runner."
+      # - name: List files in the repository
+      #   run: |
+      #     ls ${{ gitea.workspace }}
+      - name: Test msbuild
+        uses: microsoft/setup-msbuild@v2
+      - run: msbuild /version
+      - run: pwsh ./setup.ps1
+        working-directory: ${{ gitea.workspace }}/winscripts
+      - run: echo "This job's status is ${{ job.status }}."
