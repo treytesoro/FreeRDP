@@ -24,4 +24,13 @@ jobs:
           arch: amd64
       - run: pwsh ./setup.ps1
         working-directory: ${{ gitea.workspace }}/winscripts
+      - name: Release
+        uses: akkuman/gitea-release-action@v1
+        env:
+          NODE_OPTIONS: '--experimental-fetch' # if nodejs < 18
+        with:
+          name: "FreeRDP WpfRDP v${{ github.run_number }}"
+          tag_name: "v${{ github.run_number }}"
+          files: |-
+            freerdpinstall/bin/*.*
       - run: echo "This job's status is ${{ job.status }}."
