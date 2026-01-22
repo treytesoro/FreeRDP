@@ -29,7 +29,7 @@ jobs:
         working-directory: ${{ github.workspace }}/winscripts
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          TAG: ${{ github.ref_name }}
+          RUN_NUMBER: ${{ github.run_number }}
         run:
           pwsh.exe ./github-release.ps1
       - run: echo "This job's status is ${{ job.status }}."
