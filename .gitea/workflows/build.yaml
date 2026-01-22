@@ -34,6 +34,6 @@ jobs:
           tag_name: "v${{ github.run_number }}"
           body: "Automated build release v${{ github.run_number }} with wfreerdp embedded enhancements."
           files: |-
-            freerdpinstall/bin/*.*
             freerdpinstall/build-wfreerdp-win32.zip
+            # freerdpinstall/bin/*.*
       - run: echo "This job's status is ${{ job.status }}."
