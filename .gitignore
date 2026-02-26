@@ -3,3 +3,6 @@
 build
 checker
 abi-checker
+.vscode/
+build-mingw/
+*.log

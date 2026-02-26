@@ -143,6 +143,8 @@ class SdlContext
 
 	[[nodiscard]] bool handleEvent(const SDL_Event& ev);
 
+	SDL_WindowID getMainWindowId();
+
   private:
 	[[nodiscard]] static BOOL preConnect(freerdp* instance);
 	[[nodiscard]] static BOOL postConnect(freerdp* instance);
@@ -226,4 +228,6 @@ class SdlContext
 	uint32_t _windowHeigth = 0;
 	WinPREvent _windowsCreatedEvent;
 	std::thread _thread;
+
+	SDL_WindowID _mainWindowID = 0;
 };

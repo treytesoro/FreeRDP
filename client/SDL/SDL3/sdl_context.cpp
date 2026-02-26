@@ -413,16 +413,36 @@ bool SdlContext::createWindows()
 		auto did = WINPR_ASSERTING_INT_CAST(SDL_DisplayID, id);
 		auto window = SdlWindow::create(did, title, flags, w, h);
 
+		const auto parent = freerdp_settings_get_uint64(settings, FreeRDP_ParentWindowId);
+		bool isParentSet = false;
+		if (parent != 0)
+		{
+			isParentSet = window.setParent(parent);
+			if (!isParentSet)
+				return false;
+		}
+
 		if (freerdp_settings_get_bool(settings, FreeRDP_UseMultimon))
 		{
 			window.setOffsetX(originX - monitor->x);
 			window.setOffsetY(originY - monitor->y);
 		}
 
+		SDL_WindowID winId = window.id();
+
 		_windows.insert({ window.id(), std::move(window) });
+
+		if(isParentSet) {
+			_mainWindowID = winId;
+			SDL_SetWindowsMessageHook(SdlWindow::SDLMessageHook, reinterpret_cast<void*>(this));
+		}
 	}
 
 	return true;
+}
+
+SDL_WindowID SdlContext::getMainWindowId() {
+	return _mainWindowID;
 }
 
 bool SdlContext::updateWindowList()
