@@ -36,6 +36,11 @@
 
 #include <windowsx.h>
 
+/* Custom message for parent window to set size*/
+#define WM_PARENT_SETSIZE (WM_USER+0)
+#define WM_PARENT_GOTFOCUS (WM_USER+1)
+#define TAG CLIENT_TAG("REPARENTING LOG")
+
 static HWND g_focus_hWnd = nullptr;
 static HWND g_main_hWnd = nullptr;
 static HWND g_parent_hWnd = nullptr;
@@ -88,12 +93,26 @@ LRESULT CALLBACK wf_ll_kbd_proc(int nCode, WPARAM wParam, LPARAM lParam)
 
 	if (g_parent_hWnd && g_main_hWnd)
 	{
+		char buffer[256] = { 0 };
+		sprintf_s(buffer, sizeof(buffer),
+		          "Parent HWND: 0x%p, Main HWND: 0x%p, Focus HWND: 0x%p", g_parent_hWnd,
+		          g_main_hWnd, g_focus_hWnd);
+		WLog_INFO(TAG, buffer);
+
 		wfc = (wfContext*)GetWindowLongPtr(g_main_hWnd, GWLP_USERDATA);
 		GUITHREADINFO gui_thread_info;
 		gui_thread_info.cbSize = sizeof(GUITHREADINFO);
 		HWND fg_win_hwnd = GetForegroundWindow();
 		DWORD fg_win_thread_id = GetWindowThreadProcessId(fg_win_hwnd, &ext_proc_id);
 		BOOL result = GetGUIThreadInfo(fg_win_thread_id, &gui_thread_info);
+
+		memset(buffer, 0, sizeof(buffer));
+		sprintf_s(buffer, sizeof(buffer),
+		          "Foreground HWND: 0x%p, Active HWND: 0x%p, gui_thread_info.hwndFocus: 0x%p, Capture HWND: 0x%p, wfc->hWndParent: 0x%p",
+		          fg_win_hwnd, gui_thread_info.hwndActive, gui_thread_info.hwndFocus,
+		          gui_thread_info.hwndCapture, wfc->hWndParent);
+		WLog_INFO(TAG, buffer);
+
 		if (gui_thread_info.hwndFocus != wfc->hWndParent)
 		{
 			g_focus_hWnd = nullptr;
@@ -757,6 +776,24 @@ LRESULT CALLBACK wf_event_proc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam
 				{
 					processed = FALSE;
 				}
+			}
+			break;
+
+			case WM_PARENT_SETSIZE: // Custom message for parent window to set size
+			{
+				wfc->client_width = HIWORD(lParam);
+				wfc->client_height = LOWORD(lParam);
+				wf_send_resize(wfc);
+				processed = FALSE;
+			}
+			break;
+
+			case WM_PARENT_GOTFOCUS: // Custom message for parent window to set focus
+			{
+				(void)freerdp_settings_set_bool(wfc->common.context.settings, FreeRDP_SuspendInput,
+			                                FALSE);
+				freerdp_set_focus(wfc->common.context.instance);
+				processed = FALSE;
 			}
 			break;
 

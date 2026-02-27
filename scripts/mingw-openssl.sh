@@ -334,7 +334,8 @@ do_cmake_build_debug \
   -DWITH_JSONC_REQUIRED=ON \
   -DWITH_FDK_AAC=ON \
   -DWITH_WIN_CONSOLE=ON \
-  -DWITH_MANPAGES=OFF 
+  -DWITH_MANPAGES=OFF \
+  -DWITH_CLIENT_INTERFACE=ON
 
 if [ $ARG_SHARED -eq 1 ]; then
   cp /usr/lib/gcc/x86_64-w64-mingw32/13-win32/libstdc++-6.dll $INSTALL_BASE/bin

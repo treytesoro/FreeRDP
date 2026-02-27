@@ -68,6 +68,22 @@
 
 #define WM_FREERDP_SHOWWINDOW (WM_USER + 100)
 
+//
+// Re-parenting notifications to send to parent
+//
+// Notify parent when window shown
+#define WM_NOTIFY_PARENT_FREERDP_SHOWWINDOW (WM_USER + 600)
+// The Parent window can use this
+// to show a progress bar or similar.
+#define WM_NOTIFY_PARENT_POSTAUTHENTICATE (WM_USER + 601)
+// Message to notify parent of post connect.
+// If you need to dismiss a parent window progress bar,
+// it's better to do it with WM_NOTIFY_PARENT_FREERDP_SHOWWINDOW
+// as post connect gets called too early.
+#define WM_NOTIFY_PARENT_POSTCONNECT (WM_USER + 602)
+// Message to notify parent of disconnect
+#define WM_NOTIFY_PARENT_DISCONNECT (WM_USER + 603)
+
 static BOOL wf_has_console(void)
 {
 #ifdef WITH_WIN_CONSOLE
@@ -496,6 +512,8 @@ static BOOL wf_post_connect(freerdp* instance)
 	                                freerdp_settings_get_uint32(settings, FreeRDP_Floatbar));
 
 	wf_event_focus_in(wfc);
+	
+	PostMessage(wfc->hWndParent, WM_NOTIFY_PARENT_POSTCONNECT, 0, 0);
 
 	return TRUE;
 }
@@ -509,6 +527,8 @@ static void wf_post_disconnect(freerdp* instance)
 
 	wfc = (wfContext*)instance->context;
 	free(wfc->window_title);
+
+	PostMessage(wfc->hWndParent, WM_NOTIFY_PARENT_DISCONNECT, 0, 0);
 }
 
 static CREDUI_INFOW wfUiInfo = { sizeof(CREDUI_INFOW), nullptr, L"Enter your credentials",
@@ -598,9 +618,13 @@ static BOOL wf_authenticate_ex(freerdp* instance, char** username, char** passwo
 			status = CredUIPromptForCredentialsW(&wfUiInfo, titleW, nullptr, 0, UserNameW,
 			                                     ARRAYSIZE(UserNameW), PasswordW,
 			                                     ARRAYSIZE(PasswordW), &fSave, dwFlags);
+
+		PostMessage(wfc->hWndParent, WM_NOTIFY_PARENT_POSTAUTHENTICATE, 0, 0);
+
 		if (status != NO_ERROR)
 		{
 			WLog_ERR(TAG, "CredUIPromptForCredentials unexpected status: 0x%08lX", status);
+			MessageBoxW(wfc->hwnd, L"Failed to get credentials", L"FreeRDP", MB_OK | MB_ICONERROR);
 			return FALSE;
 		}
 
@@ -1048,6 +1072,24 @@ static BOOL wf_present_gateway_message(freerdp* instance, UINT32 type, BOOL isDi
 	return TRUE;
 }
 
+static DWORD WINAPI wf_notify_parent_thread(LPVOID lpParam)
+{
+	// Wait 3 seconds to ensure the window is shown
+	// and desktop ready before notifying parent.
+	// This isn't 100% reliable. Sometimes parent still
+	// receives the message before the deskop is ready.
+
+	Sleep(1000);
+	wfContext* wfc = (wfContext*)lpParam;
+	WINPR_ASSERT(wfc);
+
+	HWND hParent = wfc->hWndParent; // GetParent(wfc->hwnd);
+	PostMessage(hParent, WM_NOTIFY_PARENT_FREERDP_SHOWWINDOW, 0, 0);
+	WLog_DBG(TAG, "Notify parent thread exited.");
+	ExitThread(0);
+	return 0;
+}
+
 static DWORD WINAPI wf_client_thread(LPVOID lpParam)
 {
 	MSG msg = WINPR_C_ARRAY_INIT;
@@ -1150,6 +1192,7 @@ static DWORD WINAPI wf_client_thread(LPVOID lpParam)
 				case WM_FREERDP_SHOWWINDOW:
 				{
 					ShowWindow(wfc->hwnd, SW_NORMAL);
+					CreateThread(NULL, 0, wf_notify_parent_thread, (LPVOID)wfc, 0, NULL);
 					break;
 				}
 				default:
